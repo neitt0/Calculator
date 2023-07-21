@@ -2,29 +2,38 @@ let firstNum
 let operator
 let secondNum
 
+let temp = ''
+
 const displayArea = document.querySelector('textarea#displayArea')
 const buttons = document.querySelectorAll('button')
 
 buttons.forEach((button) => {
   button.addEventListener('click', () => {
-    displayArea.textContent += button.textContent
+    if (button.parentElement.classList == 'numbers') {
+      temp += button.textContent
+      displayArea.textContent = temp
+    } else if (button.textContent == '=') {
+      secondNum = displayArea.textContent
+      displayArea.textContent = operate(firstNum, operator, secondNum)
+      firstNum = displayArea.textContent
+    } else if (button.parentElement.className == 'operations') {
+      temp = ''
+      firstNum = displayArea.textContent
+      operator = button.textContent
+    }
   })
 })
 
-function operate(opp, numOne, numTwo) {
-  switch(opp) {
+function operate(numOne, oper, numTwo) {
+  switch(oper) {
     case "+":
-      add(numOne, numTwo)
-      break;
+      return add(numOne, numTwo)
     case "-":
-      subtract(numOne, numTwo)
-      break;
+      return subtract(numOne, numTwo)
     case "*":
-      multiply(numOne, numTwo)
-      break;
+      return multiply(numOne, numTwo)
     case "/":
-      divide(numOne, numTwo)
-      break;
+      return divide(numOne, numTwo)
     default:
       "Something went wrong"
   }
@@ -33,17 +42,17 @@ function operate(opp, numOne, numTwo) {
 // Maths
 
 function add(a, b) {
-  return a + b
+  return Number(a) + Number(b)
 }
 
 function subtract(a, b) {
-  return a - b
+  return Number(a) - Number(b)
 }
 
 function multiply(a, b) {
-  return a * b
+  return Number(a) * Number(b)
 }
 
 function divide(a, b) {
-  return a / b
+  return Number(a) / Number(b)
 }
