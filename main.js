@@ -20,6 +20,7 @@ buttons.forEach((button) => {
         temp = ''
         displayArea.textContent = ''
       }
+
     } else if (button.parentElement.classList == 'numbers') {
       if (button.textContent == '.' && temp.includes('.')) {
         temp += ''
@@ -47,6 +48,11 @@ buttons.forEach((button) => {
         operator = ''
         secondNum = ''
       }
+
+    }
+
+    if (displayArea.textContent.length > 8) {
+      displayArea.textContent = Number(displayArea.textContent).toFixed(8 - displayArea.textContent.indexOf('.'))
     }
   })
 })
