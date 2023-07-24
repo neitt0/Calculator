@@ -9,7 +9,18 @@ const buttons = document.querySelectorAll('button')
 
 buttons.forEach((button) => {
   button.addEventListener('click', () => {
-    if (button.parentElement.classList == 'numbers') {
+    if (button.parentElement.classList == 'clearBtns') {
+      if (button.textContent == 'AC') {
+        firstNum = ''
+        operator = ''
+        secondNum = ''
+        temp = ''
+        displayArea.textContent = ''
+      } else if (button.textContent == 'C') {
+        temp = ''
+        displayArea.textContent = ''
+      }
+    } else if (button.parentElement.classList == 'numbers') {
       if (button.textContent == '.' && temp.includes('.')) {
         temp += ''
       } else if (button.textContent == '.' && temp == '') {
